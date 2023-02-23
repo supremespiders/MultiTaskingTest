@@ -5,8 +5,8 @@ namespace MultiTaskingTest;
 
 public class XpathOptimizer
 {
-    private List<string> _choosenPaths=new();
-    private List<HtmlNode> _checkedNodes=new();
+    private List<string> _chosenPaths=new();
+    private readonly List<HtmlNode> _checkedNodes=new();
     private HtmlDocument _doc;
 
     private int XpathLength(string s)
@@ -23,12 +23,12 @@ public class XpathOptimizer
         CheckNode(targetNodes.First(), "");
         Console.WriteLine("Result : ");
         var text = targetNodes.First().InnerText;
-        _choosenPaths = _choosenPaths.Where(x => XpathLength(x) <= 4 && !x.Contains(text)).ToList();
-        _choosenPaths=_choosenPaths.OrderBy(x => x.Length).ToList();
+        _chosenPaths = _chosenPaths.Where(x => XpathLength(x) <= 4 && !x.Contains(text)).ToList();
+        _chosenPaths=_chosenPaths.OrderBy(x => x.Length).ToList();
         
-        foreach (var choosenPath in _choosenPaths)
+        foreach (var chosenPath in _chosenPaths)
         {
-            Console.WriteLine(choosenPath);
+            Console.WriteLine(chosenPath);
         }
     }
     
@@ -64,7 +64,7 @@ public class XpathOptimizer
             var perfectPaths = GetPerfectPaths(node);
             foreach (var path in perfectPaths)
             {
-                _choosenPaths.Add($"{path}{p}");
+                _chosenPaths.Add($"{path}{p}");
             }
 
             // if (!p.StartsWith("/following-sibling"))
