@@ -61,4 +61,18 @@ public static class Utility
       }
       return obj;
    }
+   
+   public static (int position,int total) Position(this HtmlNode node)
+   {
+      var parentNode = node.ParentNode;
+      var childNodes = parentNode.SelectNodes($"./{node.Name}");
+      for (var i = 0; i < childNodes.Count; i++)
+      {
+         var childNode = childNodes[i];
+         if (node == childNode)
+            return (i + 1,childNodes.Count);
+      }
+
+      return (-1, childNodes.Count);
+   }
 }

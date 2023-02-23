@@ -13,4 +13,8 @@ public class XpathAttribute: Attribute
     {
         _xPaths = xPaths;
     }
+    public XpathAttribute(bool nonNull,params string[] xPaths)
+    {
+        _xPaths = xPaths;
+    }
 }
